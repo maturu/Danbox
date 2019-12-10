@@ -45,6 +45,7 @@ header {
     width: 170px;
     height: auto;
     margin: 20px 0;
+    float: left;
   }
 }
 
@@ -56,6 +57,27 @@ header {
   text-align: center;
   top: 0;
   left: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  li {
+    margin: 0 15px;
+    margin-top: 20px;
+    a {
+      padding: 0;
+    }
+  }
+}
+
+.circle-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid black;
 }
 
 /* sign in design */
@@ -263,3 +285,4 @@ footer {
     }
   }
 }
+
