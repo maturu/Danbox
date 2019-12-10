@@ -9,11 +9,43 @@ $twitter-color: #1da1f2;
 $twitter-color-dark: #1b95e0;
 $subtext-color: #aab8c2;
 
+@mixin article {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 300px;
+  color: white;
+  text-align: center;
+}
+
+@mixin article_text {
+  h1 {
+    font-size: 45px;
+    margin-top: 30%;
+    font-weight: bolder;
+  }
+  h2 {
+    font-size: 28px;
+    margin-top: 5px;
+    font-weight: bolder;
+  }
+}
+
 /* universal */
 
 body {
   margin: 0;
   font-family: Arial,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: white;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.1));
+  #logo {
+    width: 170px;
+    height: auto;
+    margin: 20px 0;
+  }
 }
 
 .alert {
@@ -205,3 +237,26 @@ footer {
   }
 }
 
+/* home */
+
+.container {
+  .row {
+    width: 1090px;
+    margin: 0 auto;
+    .introduction {
+      background: url('introduction_bg.png');
+      @include article;
+      @include article_text;
+    }
+    .auction {
+      background: url('auction_bg.png');
+      @include article;
+      @include article_text;
+    }
+    .event {
+      background: url('event_bg.png');
+      @include article;
+      @include article_text;
+    }
+  }
+}
