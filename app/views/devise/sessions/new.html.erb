@@ -1,0 +1,56 @@
+<% provide(:title, "Log in") %>
+<div class="split">
+  <div class="split-item split-item-design">
+    <%= image_tag 'danbox_silhouette.png', id: "danbox_silhouette" %>
+    <div class="contents">
+      <div class="contents-item">
+        <%= image_tag 'icon-scissors.png' %>
+        あなたの作品を投稿しよう。
+      </div>
+      <div class="contents-item">
+        <%= image_tag 'icon-artist.png' %>
+        話題のアーティストをフォローしよう。
+      </div>
+      <div class="contents-item">
+        <%= image_tag 'icon-image.png' %>
+        Danboxに参加しよう。
+      </div>
+    </div>
+  </div>
+  <div class="split-item">
+    <div class="login-form">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="login-form-email">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+        </div>
+        <div class="login-form-password">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+          <%= link_to 'パスワードを忘れた場合はこちら', new_password_path(resource_name) %>
+        </div>
+        <%= f.button "ログイン" %>
+      <% end %>
+    </div>
+    <div class="signup-block">
+      <%= image_tag 'icon.png', class: "icon-box" %>
+      <h1>ダンボールの限界を超えた作品を</h1>
+      <h2>Danboxをはじめよう</h2>
+      <%= link_to 'アカウント作成', new_user_registration_path, class: "signup-btn" %>
+      <%= link_to 'Twitterログイン', '#', class: "sns-btn" %>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <nav>
+    <ul>
+      <li><%= link_to "Danboxについて", '#' %></li>
+      <li><%= link_to "ヘルプ", '#' %></li>
+      <li><%= link_to "利用規約", '#' %></li>
+      <li><%= link_to "プライバシーポリシー", '#' %></li>
+      <li><%= link_to "広告について", '#' %></li>
+      <li><%= link_to "お問い合わせ", '#' %></li>
+      <li><%= link_to "公式Twitter", '#' %></li>
+      <li><%= link_to "©2019 Danbox", '#' %></li>
+    </ul>
+  </nav>
+</footer>
