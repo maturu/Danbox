@@ -1,0 +1,45 @@
+<% provide(:title, 'Home') %>
+
+<div class="row">
+  <a href=<%= introduction_path.to_s %>>
+    <div class="col-sm-4 introduction">
+      <h1>工作入門</h1>
+      <h2>ダンボールアートの作り方</h2>
+    </div>
+  </a>
+  <a href=<%= auction_path.to_s %>>
+    <div class="col-sm-4 auction">
+      <h1>アートワーク<br>オークション</h1>
+    </div>
+  </a>
+  <a href=<%= event_path.to_s %>>
+    <div class="col-sm-4 event">
+      <h1>イベント</h1>
+    </div>
+  </a>
+</div>
+
+<div class="post-form">
+  <div id="post-prev">
+    <img id="post-img-prev" src="#">
+  </div>
+  <%= form_for @post do |f| %>
+    <label>
+      <%= image_tag "post-icon-image.png", id: "post-icon-image" %>
+      <%= f.file_field :content, id: "post-img" %>
+    </label>
+
+    <div class="actions">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <h3 id="resently-post">最近の投稿</h3>
+  <% @posts.each do |post| %>
+    <div class="col-sm-4 post-content">
+      <%= image_tag post.content.to_s %>
+    </div>
+  <% end %>
+</div>
