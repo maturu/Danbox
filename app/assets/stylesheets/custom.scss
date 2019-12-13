@@ -90,6 +90,32 @@ header {
   border: 1px solid black;
 }
 
+.navigator {
+  width: 810px;
+  height: auto;
+  margin: 20px auto;
+}
+
+.simple-page {
+  width: 810px;
+  height: auto;
+  margin: 30px auto;
+  background-color: white;
+  padding: 15px 40px;
+  border: 1px solid #DDD;
+  h1 {
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid $theme-color;
+  }
+  h3 {
+    margin-top: 30px;
+  }
+  li {
+    margin: 10px 0;
+  }
+}
+
 /* sign in design */
 
 .split {
@@ -365,3 +391,4 @@ footer {
   color: $subtext-color;
   font-weight: bold;
 }
+

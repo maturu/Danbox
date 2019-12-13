@@ -29,6 +29,8 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
 
+    <%= link_to "利用規約", terms_path %>と<%= link_to "プライバシーポリシー", privacy_policy_path %>をご確認の上ご登録ください
+
     <div class="actions">
       <%= f.submit "Sign up", class: "btn btn-primary" %>
     </div>

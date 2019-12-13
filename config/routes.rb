@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get '/introduction', to: 'static_pages#introduction'
   get '/auction', to: 'static_pages#auction'
   get '/event', to: 'static_pages#event'
+  get '/about', to: 'static_pages#about'
+  get '/help', to: 'static_pages#help'
+  get '/terms', to: 'static_pages#terms'
+  get '/privacy_policy', to: 'static_pages#privacy_policy'
+  get '/advertisement', to: 'static_pages#advertisement'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
