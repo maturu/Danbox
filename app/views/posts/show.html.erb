@@ -1,17 +1,21 @@
 <% provide(:title, "Profile") %>
-<h1>こんにちは、<%= current_user.username %>さん</h1>
+
+<h1>こんにちは、<%= @user.username %>さん</h1>
 <p>ユーザー用ページです。</p>
 
 <div class="row">
   <h3>投稿作品</h3>
-  <% @posts.each do |post| %>
+  <% @user.posts.order("id DESC").each do |post| %>
     <div class="col-sm-2 user-content">
       <%= image_tag post.content.to_s %>
-      <%= button_to '削除', "/posts/#{post.id}", method: :delete %>
+      <% if @user == current_user %>
+        <%= button_to '削除', "/posts/#{post.id}", method: :delete %>
+      <% end %>
     </div>
   <% end %>
 </div>
 
-<%= link_to "編集", edit_user_registration_path %>
-
-<%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+<% if @user == current_user %>
+  <%= link_to "編集", edit_user_registration_url %>
+  <%= button_to "ログアウト", destroy_user_session_url, method: :delete, class: "btn btn-primary" %>
+<% end %>
