@@ -19,11 +19,16 @@
   </a>
 </div>
 
-<div class="post-form">
+<div id="target" class="post-form">
   <div id="post-prev">
     <img id="post-img-prev" src="#">
   </div>
   <%= form_for @post do |f| %>
+      <%= f.text_area :caption, id: "post-caption", class: "form-control", placeholder: "Write a caption ..." %>
+    <div>
+      <p id="post-caption-count"> 0/140</p>
+    </div>
+
     <label>
       <%= image_tag "post-icon-image.png", id: "post-icon-image" %>
       <%= f.file_field :content, id: "post-img" %>
@@ -35,11 +40,41 @@
   <% end %>
 </div>
 
-<div class="row">
+<div id="post-view" class="row">
   <h3 id="resently-post">最近の投稿</h3>
   <% @posts.each do |post| %>
-    <div class="col-sm-4 post-content">
-      <%= image_tag post.content.to_s %>
+    <% @user = @users.find(post.user_id) %>
+    <div class="col-sm-4 post-content modal-item">
+      <div class="modal-item-img">
+        <%= image_tag post.content.to_s %>
+      </div>
+      <div class="modal-item-action">
+        <div class="post-user">
+          <%= link_to show_path(id: post.user_id) do %>
+              <%= image_tag @user.avatar.to_s, class: "post-user-avatar" %>
+          <% end %>
+          <%= link_to @user.username, show_path(id: post.user_id), class: "post-user-name" %>
+          <%= link_to "フォローする", "#", class: "follow-user" %>
+        </div>
+        <div class="post-comment">
+          <% unless post.caption.empty? %>
+            <div class="user-caption">
+              <%= link_to show_path(id: post.user_id) do %>
+                <%= image_tag @user.avatar.to_s, class: "post-user-avatar" %>
+              <% end %>
+              <div class="user-txt">
+                <%= link_to @user.username, show_path(id: post.user_id), class: "post-user-name" %>
+                <p><%= simple_format(post.caption) %></p>
+              </div>
+            </div>
+          <% end %>
+          <div class="other-comment">
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
+</div>
+
+<div id="modal-window">
 </div>
