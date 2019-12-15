@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     if post.user_id == current_user.id
       post.destroy
     end
-    redirect_to show_path
+    redirect_to show_path(id: current_user.id)
   end
 
   protected
