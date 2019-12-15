@@ -8,7 +8,13 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable #, :omniauthable, omniauth_providers: [:twitter]
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   validates_uniqueness_of :username
   validates_presence_of :username
+
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
 end

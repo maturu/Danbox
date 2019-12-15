@@ -83,6 +83,18 @@
             <% end %>
           </div>
         </div>
+        <div class="post-like-form">
+          <% if current_user.already_liked?(post) %>
+            <%= button_to post_like_path(post, id: current_user.id), method: :delete do %>
+              <%= image_tag "icon-like-already.png", class: "like-event" %>
+            <% end %>
+          <% else %>
+            <%= button_to post_likes_path(post) do %>
+              <%= image_tag "icon-like.png", class: "like-event" %>
+            <% end %>
+          <% end %>
+          <p><%= post.likes.count %>人がいいね！しました</p>
+        </div>
         <div>
           <%= form_for [post, @comment] do |f| %>
             <div class="post-comment-form">
@@ -98,3 +110,4 @@
 
 <div id="modal-window">
 </div>
+

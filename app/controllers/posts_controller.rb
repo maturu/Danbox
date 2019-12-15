@@ -7,10 +7,12 @@ class PostsController < ApplicationController
     @post = Post.new
     @comments = Comment.all
     @comment = Comment.new
+    @like = Like.new
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.all
   end
 
   def create

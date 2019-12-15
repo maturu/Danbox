@@ -36,6 +36,10 @@
         <%= debug(params) if Rails.env.development? %>
       </div>
     <% end %>
+
+    <% if (request.path_info == new_user_session_path) || (request.path_info == show_path) %>
+      <%= render 'layouts/footer' %>
+    <% end %>
   </body>
 </html>
 
