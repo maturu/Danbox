@@ -41,6 +41,17 @@ $(document).on('turbolinks:load', function() {
     $("#modal-window").html($(this).prop('outerHTML'));
     $("#modal-window").fadeIn(200);
   });
+
+  $(document).on("input", "#comment_content", function() {
+    var count = $(this).val().length;
+    if(count > 0) {
+      $(".submit-comment").css("pointer-events", "auto");
+      $(".submit-comment").css("opacity", "1");
+    } else {
+      $(".submit-comment").css("pointer-events", "none");
+      $(".submit-comment").css("opacity", "0.3");
+    }
+  });
 });
 
 $(document).click(function(event) {
@@ -49,3 +60,4 @@ $(document).click(function(event) {
     $("#modal-window").fadeOut(200);
   }
 });
+

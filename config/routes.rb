@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :posts, only: [:index, :show, :create]
+  resources :posts, only: [:index, :show, :create] do
+    resources :comments, only: [:create]
+  end
+
   delete 'posts/:id' => 'posts#destroy'
 
   root 'posts#index'
