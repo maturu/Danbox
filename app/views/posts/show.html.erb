@@ -1,21 +1,52 @@
 <% provide(:title, "Profile") %>
 
-<h1>こんにちは、<%= @user.username %>さん</h1>
-<p>ユーザー用ページです。</p>
-
-<div class="row">
-  <h3>投稿作品</h3>
-  <% @user.posts.order("id DESC").each do |post| %>
-    <div class="col-sm-2 user-content">
-      <%= image_tag post.content.to_s %>
+<div class="profile">
+  <div class="profile-prev">
+    <div class="profile-cover">
+      <%= image_tag @user.avatar.to_s %>
+    </div>
+  </div>
+  <div class="profile-desc">
+    <div class="user-info">
+      <h1><%= @user.username %></h1>
       <% if @user == current_user %>
-        <%= button_to '削除', "/posts/#{post.id}", method: :delete %>
+        <%= link_to "プロフィール編集", edit_user_registration_url %>
+        <%= button_to "ログアウト", destroy_user_session_url, method: :delete, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="post-info">
+      <span>投稿 <%= @user.posts.count %>件</span>
+      <span>いいね <%= @user.likes.count %>件</span>
+    </div>
+  </div>
+</div>
+
+<div class="row user-works">
+  <h3>投稿作品</h3>
+  <div class="works-list">
+    <% @user.posts.order("id DESC").each do |post| %>
+      <div class="works-content">
+        <%= image_tag post.content.to_s %>
+        <% if @user == current_user %>
+          <%= button_to '削除', "/posts/#{post.id}", method: :delete %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @user == current_user %>
+    <h3>いいねした作品</h3>
+    <div class="works-list">
+      <% @user.likes.each do |like| %>
+        <% @post = @posts.find(like.post_id)%>
+        <div class="works-content">
+          <%= image_tag @post.content.to_s %>
+          <%= button_to 'いいねを取り消す', post_like_path(@post, current_user), method: :delete %>
+        </div>
       <% end %>
     </div>
   <% end %>
 </div>
 
-<% if @user == current_user %>
-  <%= link_to "編集", edit_user_registration_url %>
-  <%= button_to "ログアウト", destroy_user_session_url, method: :delete, class: "btn btn-primary" %>
-<% end %>
+<div id="modal-window">
+</div>
