@@ -1,0 +1,113 @@
+<% provide(:title, 'Home') %>
+
+<div class="row">
+  <a href=<%= introduction_path.to_s %>>
+    <div class="col-sm-4 introduction">
+      <h1>工作入門</h1>
+      <h2>ダンボールアートの作り方</h2>
+    </div>
+  </a>
+  <a href=<%= auction_path.to_s %>>
+    <div class="col-sm-4 auction">
+      <h1>アートワーク<br>オークション</h1>
+    </div>
+  </a>
+  <a href=<%= event_path.to_s %>>
+    <div class="col-sm-4 event">
+      <h1>イベント</h1>
+    </div>
+  </a>
+</div>
+
+<div id="target" class="post-form">
+  <div id="post-prev">
+    <img id="post-img-prev" src="#">
+  </div>
+  <%= form_for @post do |f| %>
+      <%= f.text_area :caption, id: "post-caption", class: "form-control", placeholder: "Write a caption ..." %>
+    <div>
+      <p id="post-caption-count"> 0/140</p>
+    </div>
+
+    <label>
+      <%= image_tag "post-icon-image.png", id: "post-icon-image" %>
+      <%= f.file_field :content, id: "post-img" %>
+    </label>
+
+    <div class="actions">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<div id="post-view" class="row">
+  <h3 id="resently-post">最近の投稿</h3>
+  <% @posts.each do |post| %>
+    <% @post_user = @users.find(post.user_id) %>
+    <div class="col-sm-4 post-content modal-item">
+      <div class="modal-item-img">
+        <%= image_tag post.content.to_s %>
+      </div>
+      <div class="modal-item-action">
+        <div class="post-user">
+          <%= link_to show_path(id: post.user_id) do %>
+              <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
+          <% end %>
+          <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
+          <%= link_to "フォローする", "#", class: "follow-user" %>
+        </div>
+        <div class="post-comment">
+          <% unless post.caption.empty? %>
+            <div class="post-comment-item">
+              <%= link_to show_path(id: post.user_id) do %>
+                <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
+              <% end %>
+              <div class="user-txt">
+                <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
+                <p><%= simple_format(post.caption) %></p>
+              </div>
+            </div>
+          <% end %>
+          <div class="other-comment">
+            <% @comments.where(post_id: post.id).each do |comment| %>
+              <% @comment_user = @users.find(comment.user_id) %>
+              <div class="post-comment-item">
+                <%= link_to show_path(id: comment.user_id) do %>
+                  <%= image_tag @comment_user.avatar.to_s, class: "post-user-avatar" %>
+                <% end %>
+                <div class="user-txt">
+                  <%= link_to @comment_user.username, show_path(id: comment.user_id), class: "post-user-name" %>
+                  <p><%= simple_format(comment.content) %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="post-like-form">
+          <% if current_user.already_liked?(post) %>
+            <%= button_to post_like_path(post, id: current_user.id), method: :delete do %>
+              <%= image_tag "icon-like-already.png", class: "like-event" %>
+            <% end %>
+          <% else %>
+            <%= button_to post_likes_path(post) do %>
+              <%= image_tag "icon-like.png", class: "like-event" %>
+            <% end %>
+          <% end %>
+          <p><%= post.likes.count %>人がいいね！しました</p>
+        </div>
+        <div>
+          <%= form_for [post, @comment] do |f| %>
+            <div class="post-comment-form">
+              <%= f.text_field :content, placeholder: "コメントを追加...", class: "add-comment", autocomplete: 'off' %>
+              <%= f.submit '投稿する', class: "submit-comment" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="modal-window">
+</div>
+

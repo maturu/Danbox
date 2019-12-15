@@ -1,6 +1,6 @@
 <% provide(:title, "Sign up") %>
 
-<div class="row">
+<div class="simple-page">
   <h2>Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -28,6 +28,8 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
+
+    <%= link_to "利用規約", terms_path %>と<%= link_to "プライバシーポリシー", privacy_policy_path %>をご確認の上ご登録ください
 
     <div class="actions">
       <%= f.submit "Sign up", class: "btn btn-primary" %>

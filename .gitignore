@@ -29,3 +29,6 @@
 
 # Ignore auto generated files in macOS
 .DS_Store
+
+# Ignore reference
+/ref/
