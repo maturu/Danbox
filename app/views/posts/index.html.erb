@@ -43,7 +43,7 @@
 <div id="post-view" class="row">
   <h3 id="resently-post">最近の投稿</h3>
   <% @posts.each do |post| %>
-    <% @user = @users.find(post.user_id) %>
+    <% @post_user = @users.find(post.user_id) %>
     <div class="col-sm-4 post-content modal-item">
       <div class="modal-item-img">
         <%= image_tag post.content.to_s %>
@@ -51,25 +51,45 @@
       <div class="modal-item-action">
         <div class="post-user">
           <%= link_to show_path(id: post.user_id) do %>
-              <%= image_tag @user.avatar.to_s, class: "post-user-avatar" %>
+              <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
           <% end %>
-          <%= link_to @user.username, show_path(id: post.user_id), class: "post-user-name" %>
+          <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
           <%= link_to "フォローする", "#", class: "follow-user" %>
         </div>
         <div class="post-comment">
           <% unless post.caption.empty? %>
-            <div class="user-caption">
+            <div class="post-comment-item">
               <%= link_to show_path(id: post.user_id) do %>
-                <%= image_tag @user.avatar.to_s, class: "post-user-avatar" %>
+                <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
               <% end %>
               <div class="user-txt">
-                <%= link_to @user.username, show_path(id: post.user_id), class: "post-user-name" %>
+                <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
                 <p><%= simple_format(post.caption) %></p>
               </div>
             </div>
           <% end %>
           <div class="other-comment">
+            <% @comments.where(post_id: post.id).each do |comment| %>
+              <% @comment_user = @users.find(comment.user_id) %>
+              <div class="post-comment-item">
+                <%= link_to show_path(id: comment.user_id) do %>
+                  <%= image_tag @comment_user.avatar.to_s, class: "post-user-avatar" %>
+                <% end %>
+                <div class="user-txt">
+                  <%= link_to @comment_user.username, show_path(id: comment.user_id), class: "post-user-name" %>
+                  <p><%= simple_format(comment.content) %></p>
+                </div>
+              </div>
+            <% end %>
           </div>
+        </div>
+        <div>
+          <%= form_for [post, @comment] do |f| %>
+            <div class="post-comment-form">
+              <%= f.text_field :content, placeholder: "コメントを追加...", class: "add-comment", autocomplete: 'off' %>
+              <%= f.submit '投稿する', class: "submit-comment" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

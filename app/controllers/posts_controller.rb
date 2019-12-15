@@ -5,6 +5,8 @@ class PostsController < ApplicationController
     @users = User.all
     @posts = Post.all.order('id DESC')
     @post = Post.new
+    @comments = Comment.all
+    @comment = Comment.new
   end
 
   def show
