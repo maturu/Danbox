@@ -17,9 +17,11 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
+  resources :relationships, only: [:create, :destroy]
+
   delete 'posts/:id' => 'posts#destroy'
 
-  root 'posts#index'
+  root to: 'posts#index'
   get '/show', to: 'posts#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

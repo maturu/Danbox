@@ -40,11 +40,11 @@
   <% end %>
 </div>
 
+<h3 id="resently-post">最近の投稿</h3>
 <div id="post-view" class="row">
-  <h3 id="resently-post">最近の投稿</h3>
   <% @posts.each do |post| %>
-    <% @post_user = @users.find(post.user_id) %>
-    <div class="col-sm-4 post-content modal-item">
+    <div class="col-sm-4 post-content modal-item" data-id=<%= post.id %>>
+      <% @post_user = User.find(post.user_id) %>
       <div class="modal-item-img">
         <%= image_tag post.content.to_s %>
       </div>
@@ -54,7 +54,9 @@
               <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
           <% end %>
           <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
-          <%= link_to "フォローする", "#", class: "follow-user" %>
+          <div class="follow-user">
+            <%= render 'relationships/follow_button', user: @post_user %>
+          </div>
         </div>
         <div class="post-comment">
           <% unless post.caption.empty? %>
@@ -69,8 +71,8 @@
             </div>
           <% end %>
           <div class="other-comment">
-            <% @comments.where(post_id: post.id).each do |comment| %>
-              <% @comment_user = @users.find(comment.user_id) %>
+            <% Comment.where(post_id: post.id).each do |comment| %>
+              <% @comment_user = User.find(comment.user_id) %>
               <div class="post-comment-item">
                 <%= link_to show_path(id: comment.user_id) do %>
                   <%= image_tag @comment_user.avatar.to_s, class: "post-user-avatar" %>
@@ -110,4 +112,3 @@
 
 <div id="modal-window">
 </div>
-

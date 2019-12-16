@@ -16,6 +16,8 @@
     </div>
     <div class="post-info">
       <span>投稿 <%= @user.posts.count %>件</span>
+      <span>フォロワー <%= @relationships.count %>人</span>
+      <span><%= @user.relationships.count %>人をフォロー中</span>
       <span>いいね <%= @user.likes.count %>件</span>
     </div>
   </div>

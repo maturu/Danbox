@@ -60,4 +60,3 @@ $(document).click(function(event) {
     $("#modal-window").fadeOut(200);
   }
 });
-

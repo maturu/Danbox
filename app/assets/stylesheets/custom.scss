@@ -381,6 +381,19 @@ footer {
       padding: 0;
       border: 1px solid #DDD;
       cursor: pointer;
+      .post-content-img {
+        overflow: hidden;
+        height: 363px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        &:hover {
+          opacity: 0.6;
+          transition-duration: 0.3s;
+        }
+      }
       .modal-item-img {
         overflow: hidden;
         height: 363px;
@@ -460,11 +473,23 @@ footer {
         background-color: white;
         z-index: 10;
         .follow-user {
-          color: #3897f0;
-          float: right;
-          font-weight: bold;
           margin-left: auto;
-          text-decoration: none;
+          #follow-now {
+            border: 0;
+            color: #3897f0;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 0;
+            background-color: white;
+          }
+          #follow-already {
+            border: 0;
+            color: black;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 0;
+            background-color: white;
+          }
         }
       }
       .post-comment {
