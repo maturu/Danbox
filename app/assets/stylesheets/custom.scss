@@ -32,6 +32,10 @@ $subtext-color: #aab8c2;
 
 /* universal */
 
+*:focus {
+  outline: none;
+}
+
 body {
   overflow-x: hidden;
   margin: 0;
@@ -462,6 +466,7 @@ footer {
       background-color: white;
       border-left: 1px solid #DDD;
       position: relative;
+      overflow: hidden;
       .post-user {
         display: flex;
         align-items: center;
@@ -500,6 +505,10 @@ footer {
         margin-bottom: 101px;
         position: absolute;
         bottom: 0;
+        scrollbar-width: none;
+      }
+      .post-comment::-webkit-scrollbar {
+        display: none;
       }
       .post-like-form {
         display: flex;

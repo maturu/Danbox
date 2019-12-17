@@ -1,0 +1,12 @@
+<% comments.each do |comment| %>
+  <% @comment_user = User.find(comment.user_id) %>
+  <div class="post-comment-item">
+    <%= link_to show_path(id: comment.user_id) do %>
+      <%= image_tag @comment_user.avatar.to_s, class: "post-user-avatar" %>
+    <% end %>
+    <div class="user-txt">
+      <%= link_to @comment_user.username, show_path(id: comment.user_id), class: "post-user-name" %>
+      <p><%= simple_format(comment.content) %></p>
+    </div>
+  </div>
+<% end %>

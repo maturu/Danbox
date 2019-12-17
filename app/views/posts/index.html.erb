@@ -70,35 +70,15 @@
               </div>
             </div>
           <% end %>
-          <div class="other-comment">
-            <% Comment.where(post_id: post.id).each do |comment| %>
-              <% @comment_user = User.find(comment.user_id) %>
-              <div class="post-comment-item">
-                <%= link_to show_path(id: comment.user_id) do %>
-                  <%= image_tag @comment_user.avatar.to_s, class: "post-user-avatar" %>
-                <% end %>
-                <div class="user-txt">
-                  <%= link_to @comment_user.username, show_path(id: comment.user_id), class: "post-user-name" %>
-                  <p><%= simple_format(comment.content) %></p>
-                </div>
-              </div>
-            <% end %>
+          <div class="other-comment" id="auto_scroll">
+            <%= render partial: 'comments/comment', locals: { comments: Comment.where(post_id: post.id).order("id DESC") } %>
           </div>
         </div>
         <div class="post-like-form">
-          <% if current_user.already_liked?(post) %>
-            <%= button_to post_like_path(post, id: current_user.id), method: :delete do %>
-              <%= image_tag "icon-like-already.png", class: "like-event" %>
-            <% end %>
-          <% else %>
-            <%= button_to post_likes_path(post) do %>
-              <%= image_tag "icon-like.png", class: "like-event" %>
-            <% end %>
-          <% end %>
-          <p><%= post.likes.count %>人がいいね！しました</p>
+          <%= render partial: 'likes/like', locals: { post: post } %>
         </div>
-        <div>
-          <%= form_for [post, @comment] do |f| %>
+        <div class="other-comment-form">
+          <%= form_for [post, @comment], remote: true do |f| %>
             <div class="post-comment-form">
               <%= f.text_field :content, placeholder: "コメントを追加...", class: "add-comment", autocomplete: 'off' %>
               <%= f.submit '投稿する', class: "submit-comment" %>
