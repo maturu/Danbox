@@ -32,3 +32,6 @@
 
 # Ignore reference
 /ref/
+
+# Ignore custom file/directory
+.mailer_setting
