@@ -13,13 +13,6 @@
   <body>
     <%= render 'layouts/header' %>
 
-    <% if !!notice %>
-      <div class="alert alert-success alert-dismissable fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong><%= notice %></strong>
-      </div>
-    <% end %>
-
     <% if !!alert %>
       <div class="alert alert-danger alert-dismissable fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -31,9 +24,8 @@
       <%= yield %>
     <% else %>
       <div class="top-size-item"></div>
-      <div class="container">
+      <div id="target-id" class="container <%= "modal-event" if request.path_info == root_path %>">
         <%= yield %>
-        <%= debug(params) if Rails.env.development? %>
       </div>
     <% end %>
 

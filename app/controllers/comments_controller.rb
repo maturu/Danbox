@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.post_id = params[:post_id]
     unless @comment.save
       flash[:alert] = "コメントは70文字以内で入力してください"
+      redirect_to root_path
     end
     @comments = Comment.where(post_id: params[:post_id]).order("id DESC")
   end

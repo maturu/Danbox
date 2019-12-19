@@ -3,18 +3,21 @@
 <div class="row">
   <a href=<%= introduction_path.to_s %>>
     <div class="col-sm-4 introduction">
-      <h1>工作入門</h1>
-      <h2>ダンボールアートの作り方</h2>
+      <h1>Danboxとは</h1>
+      <h2>ダンボール工作系のSNS</h2>
+      <p>ダンボールで作ったあらゆる作品を<br>投稿してみんなに共有しよう！</p>
     </div>
   </a>
   <a href=<%= auction_path.to_s %>>
     <div class="col-sm-4 auction">
-      <h1>アートワーク<br>オークション</h1>
+      <h1>みんなで楽しむ</h1>
+      <p>TwitterやFacebookなどの仲のいい<br>フォロワーさんを誘うとより楽しめます。</p>
     </div>
   </a>
   <a href=<%= event_path.to_s %>>
     <div class="col-sm-4 event">
-      <h1>イベント</h1>
+      <h1>その他</h1>
+      <p>改善してほしい部分や追加してほしい機能<br>などがあればお知らせください。</p>
     </div>
   </a>
 </div>
@@ -44,51 +47,12 @@
 <div id="post-view" class="row">
   <% @posts.each do |post| %>
     <div class="col-sm-4 post-content modal-item" data-id=<%= post.id %>>
-      <% @post_user = User.find(post.user_id) %>
-      <div class="modal-item-img">
-        <%= image_tag post.content.to_s %>
-      </div>
-      <div class="modal-item-action">
-        <div class="post-user">
-          <%= link_to show_path(id: post.user_id) do %>
-              <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
-          <% end %>
-          <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
-          <div class="follow-user">
-            <%= render 'relationships/follow_button', user: @post_user %>
-          </div>
-        </div>
-        <div class="post-comment">
-          <% unless post.caption.empty? %>
-            <div class="post-comment-item">
-              <%= link_to show_path(id: post.user_id) do %>
-                <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
-              <% end %>
-              <div class="user-txt">
-                <%= link_to @post_user.username, show_path(id: post.user_id), class: "post-user-name" %>
-                <p><%= simple_format(post.caption) %></p>
-              </div>
-            </div>
-          <% end %>
-          <div class="other-comment" id="auto_scroll">
-            <%= render partial: 'comments/comment', locals: { comments: Comment.where(post_id: post.id).order("id DESC") } %>
-          </div>
-        </div>
-        <div class="post-like-form">
-          <%= render partial: 'likes/like', locals: { post: post } %>
-        </div>
-        <div class="other-comment-form">
-          <%= form_for [post, @comment], remote: true do |f| %>
-            <div class="post-comment-form">
-              <%= f.text_field :content, placeholder: "コメントを追加...", class: "add-comment", autocomplete: 'off' %>
-              <%= f.submit '投稿する', class: "submit-comment" %>
-            </div>
-          <% end %>
-        </div>
+      <div class="post-content-img">
+        <%= button_to modal_path(id: post.id), remote: true do %>
+          <%= image_tag post.content.to_s %>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
-<div id="modal-window">
-</div>
