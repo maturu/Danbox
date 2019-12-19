@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get '/introduction', to: 'static_pages#introduction'
-  get '/auction', to: 'static_pages#auction'
-  get '/event', to: 'static_pages#event'
   get '/about', to: 'static_pages#about'
   get '/help', to: 'static_pages#help'
+  get '/contact', to: 'static_pages#contact'
   get '/terms', to: 'static_pages#terms'
   get '/privacy_policy', to: 'static_pages#privacy_policy'
-  get '/advertisement', to: 'static_pages#advertisement'
   post '/modal', to: 'static_pages#modal', defaults: { format: 'javascript' }
 
   devise_for :users, controllers: {

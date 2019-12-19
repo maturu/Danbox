@@ -1,20 +1,18 @@
 <% provide(:title, 'Home') %>
 
 <div class="row">
-  <a href=<%= introduction_path.to_s %>>
+  <a href=<%= about_path.to_s %>>
     <div class="col-sm-4 introduction">
       <h1>Danboxとは</h1>
       <h2>ダンボール工作系のSNS</h2>
       <p>ダンボールで作ったあらゆる作品を<br>投稿してみんなに共有しよう！</p>
     </div>
   </a>
-  <a href=<%= auction_path.to_s %>>
-    <div class="col-sm-4 auction">
-      <h1>みんなで楽しむ</h1>
-      <p>TwitterやFacebookなどの仲のいい<br>フォロワーさんを誘うとより楽しめます。</p>
-    </div>
-  </a>
-  <a href=<%= event_path.to_s %>>
+  <div class="col-sm-4 auction">
+    <h1>みんなで楽しむ</h1>
+    <p>TwitterやFacebookなどの仲のいい<br>フォロワーさんを誘うとより楽しめます。</p>
+  </div>
+  <a href="https://twitter.com/Danbox_sns" target="_blanck">
     <div class="col-sm-4 event">
       <h1>その他</h1>
       <p>改善してほしい部分や追加してほしい機能<br>などがあればお知らせください。</p>

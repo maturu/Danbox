@@ -24,7 +24,7 @@
       <%= yield %>
     <% else %>
       <div class="top-size-item"></div>
-      <div id="target-id" class="container <%= "modal-event" if request.path_info == root_path %>">
+      <div id="target-id" class="container <%= "modal-event" if (request.path_info == root_path) || (request.path_info == show_path) %>">
         <%= yield %>
       </div>
     <% end %>

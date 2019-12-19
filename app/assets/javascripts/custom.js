@@ -52,11 +52,16 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
+  $(document).click(function(event) {
+    if(!$(event.target).closest('.modal-item').length) {
+      $("body").css('overflow', 'scroll');
+      $('#modal-window').remove();
+    }
+  });
+
+  $(document).on('click', "a", function(event) {
+    $('#modal-window').remove();
+  });
 });
 
-$(document).click(function(event) {
-  if(!$(event.target).closest('.modal-item').length) {
-    $("body").css('overflow', 'scroll');
-    $('#modal-window').remove();
-  }
-});
+

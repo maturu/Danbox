@@ -14,9 +14,11 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'carrierwave'
+gem 'fog'
 gem 'rmagick'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+gem 'mysql2', '>= 0.4.4', '< 0.6.0', group: :development
+gem 'pg', group: :production
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
