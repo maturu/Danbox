@@ -57,9 +57,9 @@ header {
   background-color: white;
   filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.1));
   #logo {
-    width: 170px;
+    width: 180px;
     height: auto;
-    margin: 20px 0;
+    margin: 10px 0;
     float: left;
   }
 }
@@ -86,7 +86,7 @@ header {
   align-items: center;
   li {
     margin: 0 15px;
-    margin-top: 20px;
+    margin-top: 10px;
     a {
       padding: 0;
     }
@@ -121,6 +121,13 @@ header {
   }
   h3 {
     margin-top: 30px;
+  }
+  h4 {
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  p {
+    line-height: 25px;
   }
   li {
     margin: 10px 0;
@@ -192,6 +199,8 @@ footer {
     padding: 0;
     li {
       margin: 0 40px;
+      color: $subtext-color;
+      font-size: 12px;
       a {
         color: $subtext-color;
         font-size: 12px;
@@ -317,6 +326,7 @@ footer {
 .container {
   #post-toggle {
     cursor: pointer;
+    width: 28px;
   }
   .post-form {
     display: none;
@@ -327,7 +337,7 @@ footer {
     border-radius: 3px;
     border: 1px solid #ddd;
     position: fixed;
-    top: 70px;
+    top: 60px;
     z-index: 1;
     text-align: center;
     #post-caption {
@@ -383,30 +393,9 @@ footer {
       @include article_text;
     }
     .post-content {
-      background-color: black;
       padding: 0;
       border: 1px solid #DDD;
       cursor: pointer;
-      .post-content-img {
-        overflow: hidden;
-        height: 363px;
-        button {
-          padding: 0;
-          margin: 0;
-          border: 0;
-          height: 363px;
-          width: 100%;
-        }
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        &:hover {
-          opacity: 0.6;
-          transition-duration: 0.3s;
-        }
-      }
       .modal-item-img {
         overflow: hidden;
         height: 363px;
@@ -421,6 +410,26 @@ footer {
         }
       }
     }
+  }
+}
+.post-content-img {
+  overflow: hidden;
+  height: 363px;
+  button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    height: 363px;
+    width: 100%;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &:hover {
+    filter: brightness(0.8);
+    transition-duration: 0.3s;
   }
 }
 
@@ -663,8 +672,7 @@ footer {
       overflow: hidden;
       padding: 0;
       border: 1px solid #DDD;
-      min-width: 300px;
-      max-width: 300px;
+      width: 300px;
       height: 300px;
       position: relative;
       img {
