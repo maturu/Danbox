@@ -1,0 +1,3 @@
+$('.post-like-form').html("<%= j(render partial: 'likes/like', locals: { post: @post }) %>");
+$('.like-event').attr('src', 'assets/icon-like-already.png');
+$('#like-count').html("<%= @post.likes.count %>");

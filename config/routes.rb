@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'static_pages#terms'
   get '/privacy_policy', to: 'static_pages#privacy_policy'
   get '/advertisement', to: 'static_pages#advertisement'
+  post '/modal', to: 'static_pages#modal', defaults: { format: 'javascript' }
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'

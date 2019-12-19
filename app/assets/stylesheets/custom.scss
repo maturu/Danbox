@@ -28,9 +28,16 @@ $subtext-color: #aab8c2;
     margin-top: 5px;
     font-weight: bolder;
   }
+  p {
+    font-weight: bolder;
+  }
 }
 
 /* universal */
+
+*:focus {
+  outline: none;
+}
 
 body {
   overflow-x: hidden;
@@ -66,7 +73,7 @@ header {
 .alert {
   min-width: 500px;
   margin: 10px;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   text-align: center;
   top: 0;
@@ -321,7 +328,6 @@ footer {
     border: 1px solid #ddd;
     position: fixed;
     top: 70px;
-    right: 8%;
     z-index: 1;
     text-align: center;
     #post-caption {
@@ -384,6 +390,13 @@ footer {
       .post-content-img {
         overflow: hidden;
         height: 363px;
+        button {
+          padding: 0;
+          margin: 0;
+          border: 0;
+          height: 363px;
+          width: 100%;
+        }
         img {
           width: 100%;
           height: 100%;
@@ -407,9 +420,6 @@ footer {
           transition-duration: 0.3s;
         }
       }
-      .modal-item-action {
-        display: none;
-      }
     }
   }
 }
@@ -422,9 +432,8 @@ footer {
 }
 
 /* modal window */
-
 #modal-window {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
@@ -456,12 +465,14 @@ footer {
       }
     }
     .modal-item-action {
+      display: inline;
       min-width: 335px;
       max-width: 335px;
       height: auto;
       background-color: white;
       border-left: 1px solid #DDD;
       position: relative;
+      overflow: hidden;
       .post-user {
         display: flex;
         align-items: center;
@@ -500,6 +511,10 @@ footer {
         margin-bottom: 101px;
         position: absolute;
         bottom: 0;
+        scrollbar-width: none;
+      }
+      .post-comment::-webkit-scrollbar {
+        display: none;
       }
       .post-like-form {
         display: flex;

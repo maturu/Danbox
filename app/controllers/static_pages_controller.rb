@@ -24,4 +24,9 @@ class StaticPagesController < ApplicationController
 
   def advertisement
   end
+
+  def modal
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+  end
 end

@@ -4,19 +4,18 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order('id DESC')
     @post = Post.new
-    @comment = Comment.new
-    @like = Like.new
     respond_to do |format|
       format.html
       format.json { 
         @new_post = Post.where('id > ?', params[:id])
+        @new_comment = Comment.where('id > ? and post_id = ?', params[:comment_id], params[:post_id])
+        @comment_user = User.where(id: @new_comment.select("user_id"))
       }
     end
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.all
     @relationships = Relationship.where(follow_id: @user.id)
   end
 
