@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :create, :destroy]
+  before_action :twitter_client, only: [:create]
 
   def index
     @posts = Post.all.order('id DESC')
