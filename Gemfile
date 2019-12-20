@@ -16,6 +16,7 @@ gem 'jquery-ui-rails'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'rmagick'
+gem 'twitter'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'pg'

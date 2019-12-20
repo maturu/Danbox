@@ -35,7 +35,11 @@
       <h1>ダンボールの限界を超えた作品を</h1>
       <h2>Danboxをはじめよう</h2>
       <%= link_to 'アカウント作成', new_user_registration_path, class: "signup-btn" %>
-      <%= link_to 'Twitterログイン', '#', class: "sns-btn" %>
+        <%- if devise_mapping.omniauthable? %>
+          <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to "#{OmniAuth::Utils.camelize(provider)}ログイン", omniauth_authorize_path(resource_name, provider), class: "sns-btn" %><br />
+          <% end %>
+        <% end %>
     </div>
   </div>
 </div>

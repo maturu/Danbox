@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post '/modal', to: 'static_pages#modal', defaults: { format: 'javascript' }
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    :omniauth_callbacks => "omniauth_callbacks"
   }
 
   resources :posts, only: [:index, :show, :create] do
