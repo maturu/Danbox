@@ -1,4 +1,4 @@
 $('.post-like-form').html("<%= j(render partial: 'likes/like', locals: { post: @post }) %>");
-$('.like-event').attr('src', 'assets/icon-like.png');
+$('.post-like-form').attr('src', '<%= asset_path "icon-like.png" %>');
 $('#like-count').html("<%= @post.likes.count %>");
 $('#<%= @post.id.to_s %>').remove();
