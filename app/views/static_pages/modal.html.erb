@@ -1,4 +1,4 @@
-<% set_meta_tags description: @post.caption, og: { url: "#{root_url}/modal?id=#{@post.id}", image: "#{@post.content}" } %>
+<% set_meta_tags description: @post.caption, og: { url: "#{root_url}modal?id=#{@post.id}", image: "#{@post.content}" } %>
 
 <div id="modal-view">
   <%= render partial: 'posts/modal_item', locals: { post: @post, comment: @comment } %>
