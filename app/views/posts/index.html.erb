@@ -28,7 +28,7 @@
     <img id="post-img-prev" src="#">
   </div>
   <%= form_for @post do |f| %>
-      <%= f.text_area :caption, id: "post-caption", class: "form-control", placeholder: "Write a caption ..." %>
+    <%= f.text_area :caption, id: "post-caption", class: "form-control", placeholder: "Write a caption ..." %>
     <div>
       <p id="post-caption-count"> 0/140</p>
     </div>
@@ -38,7 +38,6 @@
       <%= f.file_field :content, id: "post-img" %>
     </label>
 
-    <% set_meta_tags description: @post.content, og: { url: "#{root_url}/modal?id=#{@post.id}", image: image_url(@post.content) } %>
     <div class="actions">
       <%= f.submit "投稿する", class: "btn btn-primary" %>
     </div>

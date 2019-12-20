@@ -13,23 +13,24 @@ module ApplicationHelper
     {
       site: 'Danbox',
       title: 'Home',
+      reverse: true,
       charset: 'utf-8',
       description: 'description',
       keywords: 'Danbox, danbox, Cardboard, Cardboard Art, Craft, ダンボックス, ダンボール工作, ダンボールアート, 工作',
       canonical: request.original_url,
       separator: '|',
       icon: [
-        { href: image_url('icon.png') }
+        { href: image_url('icon.png') },
       ],
       og: {
         url: request.original_url,
         title: 'ダンボール工作系SNS「Danbox」',
         description: :description,
-        image: image_url('logo-inversion.jpg')
+        image: image_url('logo-inversion.jpg'),
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@Danbox_sns'
+        site: '@Danbox_sns',
       }
     }
   end
