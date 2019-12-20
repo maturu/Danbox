@@ -15,6 +15,13 @@ $subtext-color: #aab8c2;
   height: 300px;
   color: white;
   text-align: center;
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+  }
 }
 
 @mixin article_text {
@@ -378,17 +385,14 @@ footer {
     width: 1090px;
     margin: 0 auto;
     .introduction {
-      background: url('introduction_bg.png');
       @include article;
       @include article_text;
     }
     .auction {
-      background: url('auction_bg.png');
       @include article;
       @include article_text;
     }
     .event {
-      background: url('event_bg.png');
       @include article;
       @include article_text;
     }
