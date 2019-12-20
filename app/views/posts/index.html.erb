@@ -27,7 +27,7 @@
   <div id="post-prev">
     <img id="post-img-prev" src="#">
   </div>
-  <%= form_for @post do |f| %>
+  <%= form_for @post, remote: true do |f| %>
     <%= f.text_area :caption, id: "post-caption", class: "form-control", placeholder: "Write a caption ..." %>
     <div>
       <p id="post-caption-count"> 0/140</p>

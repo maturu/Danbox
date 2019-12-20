@@ -15,7 +15,7 @@ module ApplicationHelper
       title: 'Home',
       reverse: true,
       charset: 'utf-8',
-      description: 'description',
+      description: 'ダンボールを使った工作やアートなどのあらゆる作品を画像投稿機能を使って共有し、ダンボールの限界に挑むための新しいSNSです。',
       keywords: 'Danbox, danbox, Cardboard, Cardboard Art, Craft, ダンボックス, ダンボール工作, ダンボールアート, 工作',
       canonical: request.original_url,
       separator: '|',
