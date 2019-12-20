@@ -1,3 +1,4 @@
 if(!$('#modal-window')[0]) {
   $('.modal-event').append("<%= j(render partial: 'posts/modal', locals: { post: @post, comment: @comment }) %>");
+  history.replaceState({}, "<%= @post.id %>", "<%= request.original_url %>");
 }

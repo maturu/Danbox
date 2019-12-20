@@ -56,11 +56,13 @@ $(document).on('turbolinks:load', function() {
     if(!$(event.target).closest('.modal-item').length) {
       $("body").css('overflow', 'scroll');
       $('#modal-window').remove();
+      history.replaceState('', '', '/');
     }
   });
 
   $(document).on('click', "a", function(event) {
     $('#modal-window').remove();
+    history.replaceState('', '', '/');
   });
 });
 

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/terms', to: 'static_pages#terms'
   get '/privacy_policy', to: 'static_pages#privacy_policy'
-  post '/modal', to: 'static_pages#modal', defaults: { format: 'javascript' }
+  get '/modal', to: 'static_pages#modal'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

@@ -49,7 +49,7 @@
   <% @posts.each do |post| %>
     <div class="col-sm-4 post-content modal-item" data-id=<%= post.id %>>
       <div class="post-content-img">
-        <%= button_to modal_path(id: post.id), remote: true do %>
+        <%= link_to modal_path(id: post.id), remote: true do %>
           <%= image_tag post.content.to_s %>
         <% end %>
       </div>

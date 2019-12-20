@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      @client.update("#{@post.caption}\r #{root_url}/modal?id=#{@post.id}")
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = params[:post][:caption].length > 140 ? "見出しは140文字以内で入力してくだい" : "投稿する画像を選択してください"
@@ -41,5 +42,15 @@ class PostsController < ApplicationController
   protected
     def post_params
       params.require(:post).permit(:content, :content_cache, :remove_content, :caption)
+    end
+
+  private
+    def twitter_client
+      @client = Twitter::REST::Client.new do |config|
+        config.consumer_key = ENV['TWITTER_API_KEY']
+        config.consumer_secret = ENV['TWITTER_API_SECRET']
+        config.access_token = ENV['TWITTER_ACCESS_TOKEN']
+        config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
+      end
     end
 end
