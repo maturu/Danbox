@@ -18,6 +18,7 @@ gem 'fog-aws'
 gem 'rmagick'
 gem 'twitter'
 gem 'meta-tags'
+gem 'newrelic_rpm'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'pg'
