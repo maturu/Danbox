@@ -16,19 +16,7 @@
         <% end %>
         <%= link_to @post_user.username, show_path(id: @post.user_id), class: "post-user-name" %>
         <div class="follow-user">
-          <% unless current_user == @post_user %>
-            <% if current_user.following?(@post_user) %>
-              <%= form_for(current_user.relationships.find_by(follow_id: @post_user.id), html: { method: :delete }, remote: true) do |f| %>
-                <%= hidden_field_tag :follow_id, @post_user.id %>
-                <%= f.submit 'フォロー中', id: "follow-already" %>
-              <% end %>
-            <% else %>
-              <%= form_for(current_user.relationships.build, remote: true) do |f| %>
-                <%= hidden_field_tag :follow_id, @post_user.id %>
-                <%= f.submit 'フォローする', id: "follow-now" %>
-              <% end %>
-            <% end %>
-          <% end %>
+          <%= render 'relationships/follow_button', user: @post_user %>
         </div>
       </div>
       <div class="post-comment">
@@ -48,35 +36,11 @@
           </div>
         <% end %>
         <div class="other-comment" id="auto_scroll">
-          <% @comments.each do |comment| %>
-            <% @comment_user = User.find(comment.user_id) %>
-            <div class="post-comment-item" data-id=<%= comment.id %> data-post_id=<%= comment.post_id %>>
-              <%= link_to show_path(id: comment.user_id) do %>
-                <% if @comment_user.avatar.present? %>
-                  <%= image_tag @comment_user.avatar.to_s, class: "post-user-avatar" %>
-                <% else %>
-                  <%= image_tag "icon.png", class: "post-user-avatar" %>
-                <% end %>
-              <% end %>
-              <div class="user-txt">
-                <%= link_to @comment_user.username, show_path(id: comment.user_id), class: "post-user-name" %>
-                <p><%= simple_format(comment.content) %></p>
-              </div>
-            </div>
-          <% end %>
+          <%= render partial: 'comments/comment', locals: { comments: Comment.where(post_id: @post.id).order("id DESC") } %>
         </div>
       </div>
       <div class="post-like-form">
-        <% if current_user.already_liked?(@post) %>
-          <%= button_to post_like_path(@post, id: current_user.id), method: :delete, remote: true do %>
-            <%= image_tag "icon-like-already.png", class: "like-event" %>
-          <% end %>
-        <% else %>
-          <%= button_to post_likes_path(@post), remote: true do %>
-            <%= image_tag "icon-like.png", class: "like-event" %>
-          <% end %>
-        <% end %>
-        <p><span id="like-count"><%= @post.likes.count %></span>人がいいね！しました</p>
+        <%= render partial: 'likes/like', locals: { post: @post } %>
       </div>
       <div class="other-comment-form">
         <%= form_for [@post, @comment], remote: true do |f| %>
