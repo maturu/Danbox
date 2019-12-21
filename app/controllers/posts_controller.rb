@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      @client.update("#{@post.caption}\r #{root_url}/modal?id=#{@post.id}")
+      @client.update("#{@post.caption}\r\r #{root_url}/card?id=#{@post.id}")
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = params[:post][:caption].length > 140 ? "見出しは140文字以内で入力してくだい" : "投稿する画像を選択してください"

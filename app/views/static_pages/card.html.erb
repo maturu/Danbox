@@ -1,4 +1,8 @@
-<% set_meta_tags title: "Card", description: @post.caption, og: { image: @post.content } %>
+<% if @post.caption == "" %>
+  <% set_meta_tags title: "Card", og: { image: @post.content } %>
+<% else %>
+  <% set_meta_tags title: "Card", description: @post.caption, og: { image: @post.content } %>
+<% end %>
 
 <div id="modal-view">
   <div class="modal-item">
