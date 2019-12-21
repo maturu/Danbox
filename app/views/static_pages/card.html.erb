@@ -36,7 +36,7 @@
           </div>
         <% end %>
         <div class="other-comment" id="auto_scroll">
-          <%= render partial: 'comments/comment', locals: { comments: Comment.where(post_id: @post.id).order("id DESC") } %>
+          <%= render partial: 'comments/comment', locals: { comments: @comments %>
         </div>
       </div>
       <div class="post-like-form">
