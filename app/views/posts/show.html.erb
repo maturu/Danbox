@@ -32,7 +32,7 @@
   <div class="works-list">
     <% @user.posts.order("id DESC").each do |post| %>
       <div class="works-content post-content-img">
-        <%= button_to modal_path(id: post.id), remote: true do %>
+        <%= link_to modal_path(id: post.id), remote: true do %>
           <%= image_tag post.content.to_s %>
         <% end %>
         <% if @user == current_user %>
@@ -48,7 +48,7 @@
       <% @user.likes.order("id DESC").each do |like| %>
         <% Post.where(id: like.post_id).each do |post| %>
           <div class="works-content post-content-img" id="<%= post.id %>">
-            <%= button_to modal_path(id: post.id), remote: true do %>
+            <%= link_to modal_path(id: post.id), remote: true do %>
               <%= image_tag post.content.to_s %>
             <% end %>
             <%= button_to 'いいねを取り消す', post_like_path(post, current_user), method: :delete, remote: true %>
