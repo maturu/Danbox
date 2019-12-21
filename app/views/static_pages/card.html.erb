@@ -1,5 +1,55 @@
 <% set_meta_tags title: "Card", description: @post.caption, og: { image: @post.content } %>
 
-<div class="simple-page">
-  <h1>ヘルプ</h1>
+<div id="modal-view">
+  <div class="modal-item">
+    <div class="modal-item-img">
+      <%= image_tag @post.content.to_s %>
+    </div>
+    <div class="modal-item-action">
+      <div class="post-user">
+        <%= link_to show_path(id: @post.user_id) do %>
+          <% if @post_user.avatar.present? %>
+            <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
+          <% else %>
+            <%= image_tag "icon.png", class: "post-user-avatar" %>
+          <% end %>
+        <% end %>
+        <%= link_to @post_user.username, show_path(id: @post.user_id), class: "post-user-name" %>
+        <div class="follow-user">
+          <%= render 'relationships/follow_button', user: @post_user %>
+        </div>
+      </div>
+      <div class="post-comment">
+        <% unless @post.caption.empty? %>
+          <div class="post-comment-item">
+            <%= link_to show_path(id: @post.user_id) do %>
+              <% if @post_user.avatar.present? %>
+                <%= image_tag @post_user.avatar.to_s, class: "post-user-avatar" %>
+              <% else %>
+                <%= image_tag "icon.png", class: "post-user-avatar" %>
+              <% end %>
+            <% end %>
+            <div class="user-txt">
+              <%= link_to @post_user.username, show_path(id: @post.user_id), class: "post-user-name" %>
+              <p><%= simple_format(@post.caption) %></p>
+            </div>
+          </div>
+        <% end %>
+        <div class="other-comment" id="auto_scroll">
+          <%= render partial: 'comments/comment', locals: { comments: @comments } %>
+        </div>
+      </div>
+      <div class="post-like-form">
+        <%= render partial: 'likes/like', locals: { post: @post } %>
+      </div>
+      <div class="other-comment-form">
+        <%= form_for [@post, @comment], remote: true do |f| %>
+          <div class="post-comment-form">
+            <%= f.text_field :content, placeholder: "コメントを追加...", class: "add-comment", autocomplete: 'off' %>
+            <%= f.submit '投稿する', class: "submit-comment" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

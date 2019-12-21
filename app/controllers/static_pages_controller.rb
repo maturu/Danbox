@@ -22,6 +22,8 @@ class StaticPagesController < ApplicationController
 
   def card
     @post = Post.find(params[:id])
+    @post_user = User.find(@post.user_id)
+    @comments = Comment.where(post_id: @post.id).order("id DESC")
     @comment = Comment.new
   end
 end
