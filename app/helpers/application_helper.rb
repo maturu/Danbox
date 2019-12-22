@@ -1,17 +1,8 @@
 module ApplicationHelper
 
-  def full_title(page_title = '')
-    base_title = "Danbox"
-    if page_title.empty?
-      base_title
-    else
-      page_title + " | " + base_title
-    end
-  end
-
   def default_meta_tags
     {
-      site: 'Danbox',
+      site: 'Danbox ダンボール工作系SNS',
       title: 'Home',
       reverse: true,
       charset: 'utf-8',
